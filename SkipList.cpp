@@ -173,7 +173,7 @@ unsigned long zslGetRank(zskiplist *zsl,RankData *obj)
 
     x = zsl->header;
     for (i = zsl->level-1; i >= 0; i--) {
-        while (x->level[i].forward && zsl->compareFun(x->level[i].forward->obj,obj) <= 0) {
+        while (x->level[i].forward && zsl->compareFun(x->level[i].forward->obj,obj) < 0) {
             rank += x->level[i].span;
             x = x->level[i].forward;
         }
