@@ -86,7 +86,7 @@ int main(int argc,char *argv[])
 	int findID = rand() % all + 1;
 	int deleteID = rand() % all + 1;
 
-	//排行榜中增加all个玩家信息
+	//排行榜中增加 all 个玩家信息
 	uint64_t makeStartTime = gettime();
 	for(int i = 1;i <= all;++i)
 	{
