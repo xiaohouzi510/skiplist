@@ -104,29 +104,29 @@ int main(int argc,char *argv[])
 
 	//删除需要的时间
 	uint64_t deleteStartTime = gettime();
-	rank.deleteData(deleteID);
+	// rank.deleteData(deleteID);
 	uint64_t deleteEndTime = gettime() - deleteStartTime;
 
 	//查找需要时间
 	uint64_t findStartTime = gettime();
-	int count = 100;
 	int rankIndex = rank.getRank(findID);
 	uint64_t findEndTime = gettime() - findStartTime;
 
 	//获取页数据
 	vector<RankData*> datas;
-	rank.getPage(100,datas);
+	int page = 100;
+	rank.getPage(page,datas);
 	display(datas);
-	printf("以上为第100页玩家数据\n");
+	printf("以上为第 %d 页玩家数据\n",page);
 
 	zskiplist* curSkipList = rank.getSkipList();
 
-	displayTime(makeEndTime,"生成排行榜用时");
-	displayTime(insertEndTime,"排行榜写入跳表");
-	displayTime(deleteEndTime,"删除一个数据用时");
-	displayTime(findEndTime,"查找一个数据用时");
+	displayTime(makeEndTime,"生成排行榜用时:");
+	displayTime(insertEndTime,"排行榜写入跳表:");
+	displayTime(deleteEndTime,"删除一个数据用时:");
+	displayTime(findEndTime,"查找一个数据用时:");
 
-	printf("玩家 %d 名字 %s 排名 %d 跳表中总个数 %d\n",findData->m_playerID,findData->m_name.data(),rankIndex,curSkipList->length);
+	printf("玩家 %d,名字 %s,排名 %d,跳表中总个数 %d\n",findData->m_playerID,findData->m_name.data(),rankIndex,curSkipList->length);
 
 	return 0;
 }
